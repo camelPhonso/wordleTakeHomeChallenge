@@ -5,7 +5,7 @@ const letterBoxes = document.querySelectorAll(".gameboard__square");
 let emptySpace = 1;
 
 function resetEmptySpace() {
-    if (emptySpace >= 1 && emptySpace <= 5) emptySpace =  emptySpace + 1;
+    if (emptySpace >= 1 && emptySpace <= 5) emptySpace += 1;
     if (emptySpace === 6) emptySpace = 1;
 }
 
@@ -56,7 +56,7 @@ function checkUserGuess() {
 document.addEventListener("keydown", (e) => {
     let isValidCharacter = e.keyCode >= 65 && e.keyCode <= 90;
     let firstEmptyBox = document.getElementById(String(emptySpace));
-
+    
     //submitting characters
     if (isValidCharacter && emptySpace < 5){
         firstEmptyBox.textContent = e.key;
@@ -83,15 +83,14 @@ document.addEventListener("keydown", (e) => {
     }
 
     // submitting a guess
-    if(e.key === 'Enter' && emptySpace < 5){
-        window.alert('Your guess must be at least 5 letters long');
+    if(e.key === 'Enter'){
+        let lastBox = document.getElementById('5');
+        if(lastBox.textContent === ''){
+            window.alert('Your guess must be at least 5 letters long');
+        }else{
+            checkUserGuess();
+            setTimeout(clearGuess, 3000);
+        }
     }
 
-    if(e.key === 'Enter' && emptySpace === 5){
-        letterBoxes.forEach(box => {
-            setTimeout(() => {box.classList.add('.gameboard__square--reveal')}, 1000)
-        });
-        checkUserGuess();
-        setTimeout(clearGuess, 3000);
-    }
 });
