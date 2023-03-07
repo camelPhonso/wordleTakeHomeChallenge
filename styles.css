@@ -1,0 +1,23 @@
+.gameboard{
+    height:fit-content;
+    width: fit-content;
+    margin:auto;
+}
+
+.gameboard__line{
+    display:flex;
+    flex-flow:row nowrap;
+    gap:5px;
+}
+
+.gameboard__square {
+    border:2px solid white;
+    height:100px;
+    width:100px;
+    background-color: black;
+    font-size:5rem;
+    color:white;
+    text-align: center;
+    font-family:monospace;
+    transition: 1s;
+}
